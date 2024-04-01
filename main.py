@@ -39,12 +39,12 @@ async def main():
             for bots in BOT_LIST:
                 ok = await app.get_users(f"@{bots}")
                 try:
-                    await app.send_message(bots, "/statusbot")
+                    await app.send_message(bots, "/start")
                     await asyncio.sleep(2)
                     messages = app.get_chat_history(bots, limit=1)
                     async for x in messages:
                         msg = x.text
-                    if msg == "/statusbot":
+                    if msg == "/start":
                         TEXT += f"\n\n🤖 - **[{ok.first_name}](tg://openmessage?user_id={ok.id}): ❌ Offline**"
                         if OWNER_ID:
                             await bot.send_message(OWNER_ID, f'Alert {ok.first_name} is offline 💀')
